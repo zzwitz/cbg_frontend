@@ -1,0 +1,93 @@
+
+li {
+  float: left;
+}
+
+
+li a:hover {
+    background-color: #C04C18;
+    text-decoration:none;
+    color: white;
+}
+
+.logoimg {
+  height: 35px
+}
+
+hr {
+  padding: 0;
+  margin: 0;
+}
+
+li a {
+    display: block;
+    color: #6C5A49;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.button-std {
+  background-color: #6C5A49;
+  color: white;
+  border: none;
+  padding: 5px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 30px;
+  margin: auto;
+  margin-top: 7%;
+  margin-left: 5px;
+  margin-right: 20px;
+  vertical-align: middle;
+  font-size: 100%
+}
+
+img {
+  /* margin: 3px; */
+}
+
+.button-std:hover {
+
+  background-color: #533E29
+}
+
+
+.option {
+  float:right
+}
+
+Link {
+  margin: 0px;
+  padding: 0px;
+}
+
+.title:hover {
+  background-color: white;
+  color: inherit;
+}
+
+.header-list {
+  margin: 0px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  list-style-type: none;
+}
+
+.header-line {
+  margin: 0px;
+}
+
+.flash-container {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 20px;
+    width: 100%; /* Full width */
+    padding: 10px;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}

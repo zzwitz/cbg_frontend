@@ -1,0 +1,80 @@
+.ArtModalScreen {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+.SizeText {
+  font-size: 80%;
+}
+
+.ArtModalEmail {
+  margin: auto;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.ArtModal {
+    padding: 5px;
+    background-color: white;
+    margin: 5% auto; /* 15% from the top and centered */
+    width: 50%;
+    box-sizing: 20%;
+    border: 2px solid #6C5A49;
+}
+
+
+.ArtModalContent {
+  margin: 10px;
+  padding-top: 20px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.ArtModalLeft, .ArtModalRight {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.ArtModalClose {
+    padding-right: 5px;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.ArtModalClose:hover,
+.ArtModalClose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-std.ArtModal {
+  margin: 0;
+  width: 30%;
+}
+
+.ArtModalImg {
+  width: 100%;
+  margin: auto;
+}
