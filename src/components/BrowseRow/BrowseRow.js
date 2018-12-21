@@ -21,7 +21,7 @@ class BrowseRow extends React.Component {
         <h3 class = "BrowseRowTitle"> {this.props.sectionTitle}</h3>
         <div class = "BrowseRow">
           {this.props.cardList.map(cardObj => (
-            <BrowseCard handleClick = {this.props.handleClick} cardObj = {cardObj}/>
+            <BrowseCard handleClick = {this.props.openModal} artistLinkFunct = {this.props.artistLinkFunct} cardObj = {cardObj} type = {this.props.rowType}/>
           ))}
 
         </div>

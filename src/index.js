@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+var ReduxThunk = require('redux-thunk').default
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

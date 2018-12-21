@@ -1,0 +1,69 @@
+.StandardForm {
+  border: 2px solid #6F4E37;
+  background-color: white;
+  color: #6F4E37;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+}
+
+
+.SubmitButton {
+  color: white;
+  background-color: #6F4E37;
+}
+
+
+.FormContainer {
+  background-color: #F4F3F2;
+  padding: 20px;
+}
+
+.FormContainer span {
+  color: #6F4E37;
+}
+
+.inputContainer {
+  text-align: center;
+  color: red;
+}
+
+.StandardFormInput, .StandardFormHalfInput {
+  align: auto;
+  text-align: center;
+  border: 1px solid #6F4E37;
+  color: #6F4E37;
+  width: 60%;
+  margin: 10px;
+}
+
+.StandardFormInput[type = checkbox] {
+  width: 20px;
+}
+
+.StandardFormHalfInput {
+  width: 29%;
+  margin: 1%;
+}
+
+.StandardFormHalfInput[type="file"],.StandardFormInput[type="file"] {
+  text-align: center;
+  width: 40%;
+  padding: 5px;
+}
+
+.StandardFormHalfInput::placeholder {
+  color: #A89487;
+}
+
+.StandardFormHalfInput:focus::placeholder {
+  color: transparent;
+}
+
+.StandardFormInput::placeholder {
+  color: #A89487;
+}
+
+.StandardFormInput:focus::placeholder {
+  color: transparent;
+}

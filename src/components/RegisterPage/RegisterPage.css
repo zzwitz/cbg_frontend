@@ -1,0 +1,15 @@
+.register-header {
+  border: 2px red;
+}
+
+.user-options-container {
+  margin: 5px auto;
+  text-align: center;
+}
+
+.options-row {
+  color: #6C5A49;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0px auto;
+}

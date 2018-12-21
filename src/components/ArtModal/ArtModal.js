@@ -2,16 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import './ArtModal.css'
 import {makeArtLink, makeArtistLink} from '../Functions/HelperFunctions.js'
-
+import {bindActionCreators} from 'redux'
+import { dispatch } from 'react-redux';
+import {connect} from 'react-redux'
+import {closeModal, viewEmail} from '../../action_creators/actionCreators.js'
+import reducerModal from '../../reducers/reducerModal';
 
 
 class ArtModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {emailDisplay: false}
     this.outsideClick = this.outsideClick.bind(this);
-    this.viewEmailButton = this.viewEmailButton.bind(this);
-    this.handleXClick = this.handleXClick.bind(this);
   }
 
   outsideClick(e) {
@@ -21,13 +22,6 @@ class ArtModal extends React.Component {
     }
   }
 
-  viewEmailButton() {
-    this.setState({
-      emailDisplay: true
-    })
-    this.forceUpdate()
-  }
-
   componentDidMount() {
     document.addEventListener('click', this.outsideClick, false);
   };
@@ -35,46 +29,56 @@ class ArtModal extends React.Component {
     document.removeEventListener('click', this.outsideClick, false);
   };
 
-  handleXClick() {
-    this.setState({emailDisplay: false})
-    this.props.closeModal()
-  }
 
   render() {
     var modalStyles = {display:'none'};
-    if (this.props.display === true) {
+    if (this.props.modal.modalVisible === true) {
       modalStyles = {}};
     var emailStyles = {display: 'none'};
     var emailButtonStyles = {};
-    if (this.state.emailDisplay === true) {
+    if (this.props.modal.emailVisible === true) {
       var emailStyles = {}
       var emailButtonStyles = {display: 'none'}
     }
     return(
-        <div style = {modalStyles}  id = {this.props.cardObj.id} class = 'ArtModalScreen'>
+        <div style = {modalStyles}  id = {this.props.modal.modalArtObj.id} class = 'ModalScreen'>
           <div class = 'ArtModal'>
-            <div ref = {node => this.node = node}  onClick = {this.handleXClick} class = "ArtModalClose"> &times; </div>
+            <div ref = {node => this.node = node}  onClick = {this.props.closeModalClick} class = "ArtModalClose"> &times; </div>
             <div class = 'ArtModalContent'>
               <div class = 'ArtModalLeft'>
-                <h4>{this.props.cardObj.title}</h4>
-                <span class = "Italics"> by <Link to = {makeArtistLink(this.props.cardObj.artistId)}> {this.props.cardObj.artist}</Link></span>
+                <h4>{this.props.modal.modalArtObj.title}</h4>
+                <span class = "Italics"> by <Link to = {makeArtistLink(this.props.modal.modalArtObj.artistId)}> {this.props.modal.modalArtObj.artistName}</Link></span>
                 <br/> <hr/> <br/>
-                <span> {this.props.cardObj.desc} </span>
+                <span> {this.props.modal.modalArtObj.desc} </span>
                 <br/> <br/>
-                <span class = 'SizeText'> Width: {this.props.cardObj.width} <br/> Height: {this.props.cardObj.height}</span>
+                <span class = 'SizeText'> Width: {this.props.modal.modalArtObj.width} <br/> Height: {this.props.modal.modalArtObj.height}</span>
                 <br/> <br/>
                 </div>
               <div class = 'ArtModalRight'>
-                <img class = "ArtModalImg" src = {this.props.cardObj.imgSRC}/>
+                <img class = "ArtModalImg" src = {this.props.modal.modalArtObj.photoSRC}/>
               </div>
             </div>
               <div class = 'ArtModalEmail'>
-                <span style = {emailStyles}> Email: {this.props.cardObj.artistEmail} </span>
-                <button  style = {emailButtonStyles} onClick = {this.viewEmailButton} class = "button-std ArtModal" href = '/register'>View Email</button>
+                <span style = {emailStyles}> Email: {this.props.modal.modalArtObj.artistEmail} </span>
+                <button  style = {emailButtonStyles} onClick = {this.props.viewEmailClick} class = "button-std ArtModal" href = '/register'>View Email</button>
               </div>
           </div>
         </div>)
   }
 }
 
-export default ArtModal
+
+function mapStateToProps(state) {
+  return {
+    modal: state.modal
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  console.log('IN mapDispatchToProps')
+  return bindActionCreators({
+    viewEmailClick: () => dispatch(viewEmail),
+    closeModalClick: () => dispatch(closeModal)
+  }, dispatch)};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArtModal)

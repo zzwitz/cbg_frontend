@@ -1,3 +1,60 @@
+.standard-button-secondary {
+  cursor: pointer;
+  background-color: #E16732;
+  border: 0px;
+  color: white;
+  height: 30px;
+  border-radius: 20px;
+  /* box-shadow: 0px 3px #000000; */
+  box-shadow: 0 10px 6px -6px #393939
+}
+
+.block-button {
+  cursor: pointer;
+  width: 90px;
+  height: 40px;
+  background-color: #6C5A49;
+  color: white;
+  padding: 9px;
+  display: inline-block;
+  margin: 2px;
+}
+
+.block-button-pressed{
+  cursor: pointer;
+  width: 90px;
+  height: 40px;
+  background-color: #583E2C;
+  color: white;
+  padding: 9px;
+  display: inline-block;
+  margin: 2px;
+}
+
+.block-button-inactive{
+  cursor: pointer;
+  width: 90px;
+  height: 40px;
+  background-color: #A89487;
+  color: white;
+  padding: 9px;
+  display: inline-block;
+  margin: 2px;
+}
+.standard-button-secondary:hover {
+  background-color: #CA5C2D;
+}
+
+.standard-button-secondary:active {
+  cursor: pointer;
+  background-color: #CA5C2D;
+  border: 0px;
+  color: white;
+  height: 30px;
+  border-radius: 20px;
+  margin-top: 2px;
+  box-shadow: 0 6px 6px -6px #393939
+}
 
 li {
   float: left;

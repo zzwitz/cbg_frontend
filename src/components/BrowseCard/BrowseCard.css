@@ -8,16 +8,13 @@
 .BrowseCard {
   background-color: inherit;
   pointer-events: visibleFill;
-  width: 150px;
-  height: 225px;
+  width: 180px;
+  height: 250px;
   padding-top: 5px;
   display: inline-block;
   margin: 5px;
-  border: 1px solid transparent;
+  border: 1px solid red;
   /* text-align: center; */
-}
-
-.BrowseCard {
   cursor: pointer;
 }
 
@@ -36,7 +33,7 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
-  width: 100px;
+  width: 150px;
   height: 250px;
   display: block;
   vertical-align: top;
@@ -69,8 +66,8 @@ a:hover {
 
 .BrowseCardImage {
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   margin: auto;
   padding-bottom: 5px;
   display: block;
