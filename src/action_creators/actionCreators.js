@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { dispatch } from 'react-redux';
 import { push } from 'connected-react-router'
+var FormData = require('form-data');
+var axios = require('axios');
 
 console.log('start')
 const FETCH_ART_BEGIN = 'FETCH_ART_BEGIN'
@@ -64,6 +66,8 @@ export function fetchArtFailure(error) {
 export function fetchArt(n) {
   return function(dispatch) {
     dispatch(fetchArtBegin())
+    console.log('GET ROWS FETCH CALLED WITH N = ', n)
+
 
     return fetch(`http://localhost:3005/browse/getRows/${n}`)
       .then(
@@ -73,13 +77,44 @@ export function fetchArt(n) {
       )
       .then(json =>
         {dispatch(fetchArtSuccess(json));
-          console.log(json)
+          console.log('JSON FOR FETCH ART', json)
         }
       )
       .catch(err => {console.log(err);
         throw('Could not fetch Art')})
   }
 }
+
+const FETCH_ART_BY_TAG_BEGIN = 'FETCH_ART_BY_TAG_BEGIN'
+const FETCH_ART_BY_TAG_SUCCESS = 'FETCH_ART_BY_TAG_SUCCESS'
+const FETCH_ART_BY_TAG_FAILURE = 'FETCH_ART_BY_TAG_FAILURE'
+
+export function fetchArtByTag(n, artTagText) {
+  return function(dispatch) {
+    var artTagTextCap = artTagText.charAt(0).toUpperCase() + artTagText.slice(1,)
+
+
+    dispatch({type: FETCH_ART_BY_TAG_BEGIN, payload: {tagText: artTagTextCap}})
+    console.log('GET ROWS FETCH CALLED WITH N = ', n, ' text = ', artTagTextCap)
+
+
+    return fetch(`http://localhost:3005/browse/getRowsByTag/${artTagTextCap}/${n}`)
+      .then(
+        response => response.json(),
+        error => {console.log('An error occurred.', error);
+        throw('Error in getRows', error)}
+      )
+      .then(json =>
+        {dispatch({type: FETCH_ART_BY_TAG_SUCCESS, payload: {sectionObj: json, tagId: 1}});
+          console.log('JSON FOR FETCH ART', json)
+        }
+      )
+      .catch(err => {console.log(err);
+        dispatch({type: FETCH_ART_BY_TAG_FAILURE, payload: err})
+        throw('Could not fetch Art')})
+  }
+}
+
 
 const CLOSE_MODAL = 'CLOSE_MODAL'
 const VIEW_EMAIL = 'VIEW_EMAIL'
@@ -229,4 +264,80 @@ export function closeArtUploadModal() {
   console.log('closeArtUploadModal Called')
   return (dispatch, getState) => {
    return dispatch({ type: CLOSE_UPLOAD_MODAL });
+}}
+
+const SUBMIT_ART_STARTED = 'SUBMIT_ART_STARTED'
+const SUBMIT_ART_FAILURE = 'SUBMIT_ART_FAILURE'
+const SUBMIT_ART_SUCCESS = 'SUBMIT_ART_SUCCESS'
+
+export function submitArt(artFormValues, user) {
+  console.log('actionCreatorSubmitArt', artFormValues)
+  console.log('actionCreatorSubmitArt user', user)
+
+  return (dispatch, getState) => {
+   dispatch({ type: SUBMIT_ART_STARTED, payload: artFormValues})
+   dispatch({ type: CLOSE_UPLOAD_MODAL})
+
+   var formUserData  = new FormData();
+   for(var name in artFormValues) {
+     formUserData.append(name, artFormValues[name]);
+   }
+
+   for(var userInfo in user) {
+     formUserData.append(userInfo, user[userInfo]);
+   }
+
+   console.log('FINAL VALUES TO SUBMIT',formUserData)
+
+    fetch("http://localhost:3005/art/createArt", {
+      headers: {
+        'Accept': 'application/json',
+      },
+      method: 'POST',
+      body: formUserData})
+    .then(function(response) {
+      console.log(response)
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+          dispatch({ type: SUBMIT_ART_FAILURE});
+          throw('Could not upload art', response.error)}
+      return response;})
+    .then(function(response) {
+      console.log(response);
+      dispatch({ type: SUBMIT_ART_SUCCESS});
+      dispatch(activateFlash('Art Upload Successful'))
+    })
+    .catch(function(err) {
+      console.log('Fetch Error :-S', err);
+      dispatch({ type: SUBMIT_ART_FAILURE});
+      dispatch(activateFlash('Art Upload Not Successful'))
+    });
+}}
+
+const ACTIVATE_FLASH = 'ACTIVATE_FLASH'
+const DEACTIVATE_FLASH = 'DEACTIVATE_FLASH'
+
+// export function activateFlash(message) {
+//   console.log('activate flash')
+//   return function(dispatch) {
+//     return dispatch({type: ACTIVATE_FLASH});
+//     // setTimeout(function(){dispatch({ type: DEACTIVATE_FLASH});},5000);
+//   }
+// }
+
+export function activateFlash(flashMessage) {
+  console.log('activate flash action creator')
+  console.log('activate flash PAYLOAD', flashMessage);
+  return (dispatch, getState) => {
+   dispatch({ type: ACTIVATE_FLASH, payload: flashMessage});
+   setTimeout(function(){dispatch({ type: DEACTIVATE_FLASH});},5000);
+}}
+
+const ADD_ART_PIECE_TO_FAVORITES = 'ADD_ART_PIECE_TO_FAVORITES'
+
+export function addArtPieceToFavoriteList(artPiece) {
+  console.log('added art to art favorite list action called with', artPiece);
+  return (dispatch, getState) => {
+   dispatch({ type: ADD_ART_PIECE_TO_FAVORITES, payload: artPiece});
 }}

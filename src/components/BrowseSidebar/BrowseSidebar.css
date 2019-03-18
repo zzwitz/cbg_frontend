@@ -2,7 +2,27 @@
   list-style-type: circle;
 }
 
+.BrowseSidebarListItem {
+  color: black;
+}
+
+
+.StandardInput::placeholder {
+  color: #A89487;
+}
+
+.StandardInput {
+  align: auto;
+  text-align: left;
+  border: 1px solid #6F4E37;
+  color: #6F4E37;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding-left: 5px;
+}
+
 .BrowseSidebarListItem:hover {
+  color: #583E2C;
   text-indent: 2px;
   text-decoration: underline;
 }

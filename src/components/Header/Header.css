@@ -9,6 +9,20 @@
   box-shadow: 0 10px 6px -6px #393939
 }
 
+.flash {
+  background-color: #333;
+  opacity: 0.95;
+  color: white;
+  /* box-shadow: 0 5px 5px 2px darkgrey; */
+  padding: 5px;
+  padding-left: 10px;
+  width: 30%;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  top: 8%;
+  left: 35%;
+}
+
 .block-button {
   cursor: pointer;
   width: 90px;
@@ -111,7 +125,21 @@ img {
 
 
 .option {
-  float:right
+  float:right;
+  height: 100%
+}
+
+.option h2 {
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.option h2:hover {
+  background-color: #C04C18;
+  text-decoration:none;
+  color: white;
+  height: 100%
 }
 
 Link {

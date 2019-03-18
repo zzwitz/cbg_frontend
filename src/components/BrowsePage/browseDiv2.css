@@ -50,6 +50,18 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.floatList {
+  background-color: #A89487;
+  color: white;
+  width: 250px;
+  height: 300px;
+  z-index: 1;
+  position: fixed;
+  top: 52px;
+  right: 0px;
+  box-shadow: -5px 5px 50px lightgrey;
+}
+
 @-ms-viewport {
   width: device-width;
 }

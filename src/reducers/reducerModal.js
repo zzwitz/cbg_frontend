@@ -20,7 +20,6 @@ const initialState = {
 
 
 export default function (state = initialState, action) {
-  console.log('modal reducer')
   switch (action.type) {
     case OPEN_MODAL:
       const newState = Object.create(state)

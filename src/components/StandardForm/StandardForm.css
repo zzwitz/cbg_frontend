@@ -41,6 +41,10 @@
   width: 20px;
 }
 
+input[type=radio] {
+  width: 12px;
+}
+
 .StandardFormHalfInput {
   width: 29%;
   margin: 1%;

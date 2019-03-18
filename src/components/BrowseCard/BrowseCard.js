@@ -26,7 +26,6 @@ class BrowseCard extends React.Component {
               :(<span></span>)}
                 </div>
             </div>
-          {/*</Link>/*/}
         </div>
 
     )

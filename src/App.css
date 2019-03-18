@@ -1,0 +1,20 @@
+.floatingSidebar {
+  position: fixed;
+  overflow-y:auto;
+  top: 0px;
+  right: 0px;
+  padding: 15px;
+  padding-bottom: 200px;
+  color: white;
+  width: 100%;
+  height: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  -ms-flex: 0 0 16.666667%;
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+  opacity: .85;
+  z-index: 1;
+  background-color: black;
+  /* pointer-events: none; */
+}

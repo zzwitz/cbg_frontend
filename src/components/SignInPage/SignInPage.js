@@ -16,11 +16,34 @@ class SignInPage extends React.Component {
           inputPlaceholder: 'Password',
           inputId: '__',
           inputType: 'password',
+        },
+        {
+          inputName: 'userType',
+          inputId: '__',
+          inputTitleBr: 'User Type',
+          inputTitle: 'Artist',
+          inputValue: 'Artist',
+          inputType: 'radio',
+        },
+        {
+          inputName: 'userType',
+          inputId: '__',
+          inputTitle: 'Venue',
+          inputValue: 'Venue',
+          inputType: 'radio',
         }]
 
+        function handleChange(newValue) {
+          alert(newValue)
+        }
+
         return(
-        <div class ='signInContainer'>
-          <StandardForm formId = '1' handleSubmit = {() => alert('signed in')} header = {'Sign In'} inputList = {inputList}/>
+        <div>
+          <div class ='signInContainer'>
+          </div>
+          <div class ='signInContainer'>
+            <StandardForm formId = '1' handleSubmit = {() => alert('signed in')} header = {'Sign In'} inputList = {inputList}/>
+          </div>
         </div>)
     }
   }

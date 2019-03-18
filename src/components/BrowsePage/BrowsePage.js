@@ -9,36 +9,24 @@ import BrowseSidebar from '../BrowseSidebar/BrowseSidebar.js'
 import BrowseBoard from '../BrowseBoard/BrowseBoard.js'
 
 var daVinci =  {
-  title: 'Da Vinci',
-  id: 1
+  title: 'Nancy Goodman',
+  id: 4,
+  link: '/artist/4'
 };
 var picasso = {
-  title :'Piasso',
-  id: 2
+  title :'Dario Preger',
+  id: 3,
+  link: '/artist/3'
 }
 var bobRoss = {
-  title : 'Bob Ross',
-  id : 3
+  title :'Eric Rosenwald',
+  id: 3,
+  link: '/artist/11'
 }
 var larryPalmer = {
-  title : 'Larry Palmer',
-  id : 4
-}
-var sculpture = {
-  title : 'Sculpture',
-  id : 5
-}
-var photography = {
-  title : 'Photography',
-  id : 6
-}
-var painting = {
-  title : 'Painting',
-  id : 7
-}
-var fashion = {
-  title : 'Fashion',
-  id : 8
+  title :'Marc Louffe',
+  id: 12,
+  link: '/artist/12'
 }
 
 
@@ -46,9 +34,41 @@ var sectionOne = {
   title:'Artists',
   catList:[daVinci, picasso, bobRoss, larryPalmer]
 }
+
+var photo = {
+  title :'Photography',
+  id: 12,
+  link: '/art/tags/photography'
+}
+
+var bw = {
+  title :'Black & White',
+  id: 12,
+  link: '/art/tags/Black%20&%20White'
+}
+
+var ab = {
+  title :'Abstract',
+  id: 12,
+  link: '/art/tags/abstract'
+}
+
+var bright = {
+  title :'Bright',
+  id: 12,
+  link: '/art/tags/bright'
+}
+
+var nature = {
+  title :'Nature',
+  id: 12,
+  link: '/art/tags/nature'
+}
+
+
 var sectionTwo = {
-  title :'Mediums',
-  catList:[sculpture, photography,painting, fashion]
+  title :'Browse by Tag',
+  catList:[photo, bw, ab, bright, nature]
 }
 
 
@@ -61,7 +81,20 @@ class BrowsePage extends React.Component {
   super(props);
 }
   componentDidMount() {
+    this.props.fetchArt(10)
+  }
 
+  renderFavoriteList(favoriteList) {
+    if (favoriteList.length != 0) {
+      return(
+        <div class = 'floatList'>
+          <li> laksdjf </li>
+        </div>
+      )
+    }
+    else {
+      return(<div> </div>)
+    }
   }
 
   render() {
@@ -69,6 +102,7 @@ class BrowsePage extends React.Component {
     return(
 
       <div className="App">
+        {this.renderFavoriteList(this.props.artFavoriteList.artFavoriteList)}
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-2">
@@ -90,11 +124,13 @@ function mapStateToProps(state) {
   console.log(state)
   return {
     art: state.art,
-    router: state.router
+    router: state.router,
+    artFavoriteList: state.artFavoriteList
   };
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
+    fetchArt: fetchArt
   }, dispatch);
 }
 //

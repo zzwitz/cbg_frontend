@@ -4,14 +4,13 @@ import {bindActionCreators} from 'redux'
 import {dispatch} from 'react-redux';
 import {connect} from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import {fetchArtistPage, openModal,closeModal, closeArtUploadModal, openArtUploadModal} from '../../action_creators/actionCreators.js'
+import {fetchArtistPage, openModal,closeModal, closeArtUploadModal, openArtUploadModal, submitArt, activateFlash} from '../../action_creators/actionCreators.js'
 import './ArtistPage.css'
 import StandardModal from '../StandardModal/StandardModal'
 import StandardForm from '../StandardForm/StandardForm'
 
 
 class UploadArtForm extends React.Component {
-
   inputList = [
     {
       inputName: 'artpiece_title',
@@ -37,6 +36,12 @@ class UploadArtForm extends React.Component {
       inputId: '__',
       inputType: 'text',
     },
+    {
+      inputName: 'tags',
+      inputPlaceholder: 'Tags (seperate w/ commas)',
+      inputId: '__',
+      inputType: 'text',
+    },
     // {
     //   inputName: 'art_picture',
     //   inputTitle: 'Select a Picture: ',
@@ -47,15 +52,11 @@ class UploadArtForm extends React.Component {
     // },
   ]
 
-  submit = values => {
-  // print the form values to the console
-  alert(values)
-  console.log(values)
-}
 
   render() {
+    console.log('ARTIST_PAGE_USER_INFO', this.props.user)
     return(
-    <StandardForm file = {true} formId = '1' handleSubmit = {this.submit} header = {'Upload Art'} inputList = {this.inputList}/>
+    <StandardForm file = {true} formId = '1'onSubmit={values => this.props.submitArt(values, this.props.user)} header = {'Upload Art'} inputList = {this.inputList}/>
   )};
 }
 
@@ -65,7 +66,7 @@ class UploadArtModal extends React.Component {
   render() {
     return(
       <div class = 'FormModal'>
-        <StandardModal onCloseClick = {this.props.onCloseClick} display = {this.props.display} innerObj = {<UploadArtForm/>}/>
+        <StandardModal onCloseClick = {this.props.onCloseClick} display = {this.props.display} innerObj = {<UploadArtForm user = {this.props.user} submitArt = {this.props.submitArt}/>}/>
       </div>
     )
   }
@@ -88,7 +89,7 @@ class ArtistHeader extends React.Component {
     return (
       <div>
         <div class = 'row'>
-          <div class = 'col-3'>
+          <div class = 'col-3' >
             artist pic
           </div>
           <div class = 'col-6'>
@@ -135,11 +136,11 @@ class ArtistPage extends React.Component {
   renderModal() {
     if(this.props.artistPage) {
       console.log('DISPLAY MODAL')
-      return(<UploadArtModal display = {this.props.artistPage.uploadModalDisplay} onCloseClick = {() => this.props.closeArtUploadModal()}/>)
+      return(<UploadArtModal user = {this.props.user} submitArt = {this.props.submitArt} display = {this.props.artistPage.uploadModalDisplay} onCloseClick = {() => this.props.closeArtUploadModal()}/>)
     }
     if (!this.props.artistPage) {
       console.log('NO MODAL')
-      return(<UploadArtModal display = {'none'} onCloseClick = {() => this.props.closeArtUploadModal()}/>)}
+      return(<UploadArtModal submitArt = {this.props.submitArt} display = {'none'} onCloseClick = {() => this.props.closeArtUploadModal()}/>)}
   }
 
   render() {
@@ -169,6 +170,8 @@ function mapDispatchToProps(dispatch) {
     closeModalClick: () => dispatch(closeModal),
     openArtUploadModal: () => dispatch(openArtUploadModal),
     closeArtUploadModal: () => dispatch(closeArtUploadModal),
+    submitArt: submitArt,
+    activateFlash: activateFlash,
   }, dispatch);
 }
 

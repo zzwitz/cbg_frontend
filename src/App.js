@@ -11,7 +11,9 @@ import Error from './components/Error/Error.js'
 import RegisterPage from './components/RegisterPage/RegisterPage.js'
 import SignInPage from './components/SignInPage/SignInPage.js'
 import HelpPage from './components/HelpPage/HelpPage.js'
+
 import BrowseRow from './components/BrowseRow/BrowseRow.js'
+import ArtCategoryPage from './components/ArtCategoryPage/ArtCategoryPage.js'
 import ArtistPage from './components/ArtistPage/ArtistPage.js'
 import {fetchArt} from './action_creators/actionCreators.js'
 import rootReducer from './reducers';
@@ -38,8 +40,6 @@ export const store = createStore(
   )
 )
 
-store.dispatch(fetchArt(6)).then(() => console.log('store', store.getState()))
-
 class App extends Component {
   render() {
     return (
@@ -47,14 +47,15 @@ class App extends Component {
         <ConnectedRouter history={history}>
         <div>
           <AppHeader/>
-          <Switch>
-            <Route exact path = '/' component = {BrowsePage}/>
-            <Route path = '/signin' component = {SignInPage} />
-            <Route path = '/help' component = {HelpPage} />
-            <Route path = '/register' component = {RegisterPage} />
-            <Route path = '/artist/:id' id = ':id' component = {ArtistPage} />
-            <Route component = {Error} />
-          </Switch>
+            <Switch>
+              <Route exact path = '/' component = {BrowsePage}/>
+              <Route path = '/signin' component = {SignInPage} />
+              <Route path = '/help' component = {HelpPage} />
+              <Route path = '/register' component = {RegisterPage} />
+              <Route path = '/artist/:id' id = ':id' component = {ArtistPage} />
+              <Route path = '/art/tags/:tagText' tagText = ':tagText' component = {ArtCategoryPage} />
+              <Route component = {Error} />
+            </Switch>
         </div>
         </ConnectedRouter>
       </Provider>

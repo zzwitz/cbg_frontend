@@ -38,8 +38,9 @@ class BrowseBoard extends React.Component {
     window.location.assign(makeCategoryLink(obj.props.cardObj.id));
   }
 
+
   render() {
-    console.log('browseboard props', this.props)
+    console.log('browseboard props', this.props.art)
     return(
       <div class = "BrowseBoardContainer">
       {this.props.art.sectionObj.map(section => (
@@ -57,7 +58,8 @@ function mapStateToProps(state) {
   return {
     // art: state.art,
     modal: state.modal,
-    router: state.router
+    router: state.router,
+    artFavoriteList: state.artFavoriteList
   };
 }
 function mapDispatchToProps(dispatch) {

@@ -5,7 +5,7 @@ import {makeArtLink, makeArtistLink} from '../Functions/HelperFunctions.js'
 import {bindActionCreators} from 'redux'
 import { dispatch } from 'react-redux';
 import {connect} from 'react-redux'
-import {closeModal, viewEmail} from '../../action_creators/actionCreators.js'
+import {closeModal, viewEmail, addArtPieceToFavoriteList} from '../../action_creators/actionCreators.js'
 import reducerModal from '../../reducers/reducerModal';
 
 
@@ -31,6 +31,25 @@ class ArtModal extends React.Component {
 
 
   render() {
+    function renderHeart(idList, modalArtObj, addArtPieceToFavoriteListClick) {
+      const found = idList.some(id => id === modalArtObj.id);
+      if (!found) {
+        return(
+          <h1 class = 'emptyHeart' onClick = {() => {
+            addArtPieceToFavoriteListClick(modalArtObj)
+          }}>
+            &#x2661;
+          </h1>
+        )
+      }
+      else {
+      return(
+        <h1 class = 'fullHeart'>
+          &#x2665;
+        </h1>
+      )}
+    }
+
     var modalStyles = {display:'none'};
     if (this.props.modal.modalVisible === true) {
       modalStyles = {}};
@@ -61,6 +80,8 @@ class ArtModal extends React.Component {
               <div class = 'ArtModalEmail'>
                 <span style = {emailStyles}> Email: {this.props.modal.modalArtObj.artistEmail} </span>
                 <button  style = {emailButtonStyles} onClick = {this.props.viewEmailClick} class = "button-std ArtModal" href = '/register'>View Email</button>
+                <br/>
+                {renderHeart(this.props.artFavoriteList.artFavoritesIdList, this.props.modal.modalArtObj, this.props.addArtPieceToFavoriteListClick)}
               </div>
           </div>
         </div>)
@@ -70,7 +91,8 @@ class ArtModal extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    modal: state.modal
+    modal: state.modal,
+    artFavoriteList: state.artFavoriteList,
   };
 }
 
@@ -78,7 +100,8 @@ const mapDispatchToProps = (dispatch) => {
   console.log('IN mapDispatchToProps')
   return bindActionCreators({
     viewEmailClick: () => dispatch(viewEmail),
-    closeModalClick: () => dispatch(closeModal)
+    closeModalClick: () => dispatch(closeModal),
+    addArtPieceToFavoriteListClick: addArtPieceToFavoriteList
   }, dispatch)};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtModal)

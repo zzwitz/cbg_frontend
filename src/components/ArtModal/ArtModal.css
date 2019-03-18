@@ -3,6 +3,10 @@
   font-size: 80%;
 }
 
+.emptyHeart {
+  cursor: pointer;
+}
+
 .ArtModalEmail {
   margin: auto;
   text-align: center;
