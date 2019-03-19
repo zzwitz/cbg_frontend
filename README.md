@@ -1,9 +1,9 @@
 
 
 ## Installation
-<li>
-  <ol> git clone __</ol>
-  <ol> cd cbg_frontned </ol>
-  <ol> npm install </ol>
-  <ol> npm start </ol>
-</li>
+<ol>
+  <li> git clone __</li>
+  <li> cd cbg_frontned </li>
+  <li> npm install </li>
+  <li> npm start <lil>
+</ol>
