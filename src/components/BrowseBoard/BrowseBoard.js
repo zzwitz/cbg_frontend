@@ -56,15 +56,12 @@ class BrowseBoard extends React.Component {
 function mapStateToProps(state) {
   console.log(state)
   return {
-    // art: state.art,
     modal: state.modal,
-    router: state.router,
-    artFavoriteList: state.artFavoriteList
+    router: state.router
   };
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchArt: fetchArt,
     openModal: openModal,
     linkTo: linkTo
   }, dispatch);

@@ -8,6 +8,9 @@ import './browseDiv2.css';
 import BrowseSidebar from '../BrowseSidebar/BrowseSidebar.js'
 import BrowseBoard from '../BrowseBoard/BrowseBoard.js'
 
+
+// TEMPORARILY HARDCODING SIDEBAR OPTIONS
+
 var daVinci =  {
   title: 'Nancy Goodman',
   id: 4,
@@ -84,25 +87,11 @@ class BrowsePage extends React.Component {
     this.props.fetchArt(10)
   }
 
-  renderFavoriteList(favoriteList) {
-    if (favoriteList.length != 0) {
-      return(
-        <div class = 'floatList'>
-          <li> laksdjf </li>
-        </div>
-      )
-    }
-    else {
-      return(<div> </div>)
-    }
-  }
-
   render() {
     console.log('browsepage art', this.props.art)
     return(
 
       <div className="App">
-        {this.renderFavoriteList(this.props.artFavoriteList.artFavoriteList)}
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-2">

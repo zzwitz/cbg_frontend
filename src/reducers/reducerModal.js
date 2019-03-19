@@ -22,7 +22,7 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case OPEN_MODAL:
-      const newState = Object.create(state)
+      var newState = Object.create(state)
       return Object.assign(newState, {modalVisible: true, modalArtObj: action.payload.artObj, emailVisible: false})
     case CLOSE_MODAL:
       console.log('close modal reducer')
