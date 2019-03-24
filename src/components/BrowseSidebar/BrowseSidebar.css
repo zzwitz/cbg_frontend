@@ -22,9 +22,9 @@
 }
 
 .BrowseSidebarListItem:hover {
+  text-decoration: underline;
   color: #583E2C;
   text-indent: 2px;
-  text-decoration: underline;
 }
 
 

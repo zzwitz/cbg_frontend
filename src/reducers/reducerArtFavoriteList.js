@@ -1,5 +1,7 @@
+// Creating string constants to declutter code
 const ADD_ART_PIECE_TO_FAVORITES = 'ADD_ART_PIECE_TO_FAVORITES'
 
+// Initial state is empty arrays for fave list
 var initialState ={
   artFavoriteList: new Array(),
   artFavoritesIdList: new Array()
@@ -7,17 +9,21 @@ var initialState ={
 
 
 export default function (state = initialState, action) {
-  console.log('REDUCER FAVORITES CALLED ADDDING', action.payload, 'to', state.artFavoriteList)
-  console.log('REDUCER FAVORITES CALLED type of fave list ', typeof state.artFavoriteList)
   switch (action.type) {
+
+    // If add piece, see if it's already in favorites, if not then add
     case ADD_ART_PIECE_TO_FAVORITES:
       const found = state.artFavoritesIdList.some(id => id === action.payload.id);
       if (!found) {
-        console.log('REDUCER FAVE ART PIECE ID  FOUND',found, ' with ', action.payload.id)
+
+        // Copying state so as not to return identical
         var newArtFavoriteList = state.artFavoriteList.slice(0)
         var newArtFavoritesIdList = state.artFavoritesIdList.slice(0)
-        console.log('REDUCER FAVORITES', typeof newArtFavoriteList)
+
+        // creating new vars
         var newVars = {artFavoriteList: newArtFavoriteList, artFavoritesIdList: newArtFavoritesIdList}
+
+        // Adding art piece to fave list and id to id list
         newArtFavoriteList.push(action.payload)
         newArtFavoritesIdList.push(action.payload.id)
     }

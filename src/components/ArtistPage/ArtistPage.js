@@ -9,7 +9,6 @@ import './ArtistPage.css'
 import StandardModal from '../StandardModal/StandardModal'
 import StandardForm from '../StandardForm/StandardForm'
 
-
 class UploadArtForm extends React.Component {
   inputList = [
     {
@@ -41,22 +40,14 @@ class UploadArtForm extends React.Component {
       inputPlaceholder: 'Tags (seperate w/ commas)',
       inputId: '__',
       inputType: 'text',
-    },
-    // {
-    //   inputName: 'art_picture',
-    //   inputTitle: 'Select a Picture: ',
-    //   inputPlaceholder: 'Picture',
-    //   inputId: '__',
-    //   inputType: 'file',
-    //   accept: 'image/*'
-    // },
+    }
   ]
 
 
   render() {
     console.log('ARTIST_PAGE_USER_INFO', this.props.user)
     return(
-    <StandardForm file = {true} formId = '1'onSubmit={values => this.props.submitArt(values, this.props.user)} header = {'Upload Art'} inputList = {this.inputList}/>
+    <StandardForm file = {true} formId = '1' onSubmit={values => this.props.submitArt(values, this.props.user)} header = {'Upload Art'} inputList = {this.inputList}/>
   )};
 }
 

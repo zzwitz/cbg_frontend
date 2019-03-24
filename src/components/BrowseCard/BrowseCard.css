@@ -64,6 +64,10 @@ a:hover {
   font-size: 12px;
 }
 
+.BrowseCardArtistName:hover {
+  text-decoration: underline;
+}
+
 .BrowseCardImage {
   display: block;
   width: 150px;
