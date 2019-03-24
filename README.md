@@ -1,7 +1,8 @@
 
 
 ## Installation
-In terminal 
+
+In terminal (assuming NPM is installed. If it isn't follow instructions here https://www.npmjs.com/get-npm)
 <ol>
   <li> git clone https://github.com/zzwitz/cbg_frontend.git</li>
   <li> cd cbg_frontned </li>
