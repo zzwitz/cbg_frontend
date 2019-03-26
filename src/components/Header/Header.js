@@ -13,6 +13,8 @@ class AppHeader extends React.Component {
 
   render() {
 
+    {// Renders flahs if active
+    }
     function flashRender(flash) {
       if (flash.flashActive) {
         return <div class = 'flash'> {flash.flashMessage} </div>
@@ -20,15 +22,17 @@ class AppHeader extends React.Component {
       else {return }
     }
 
+
     return(<div class = "header">
             <ul  class = "header-list">
               <li class = 'left-header'> </li>
               <li class = 'left-header'>
                 <Link to = '/' class = "title">
-                {/*<img class = 'logoimg' src = {'logo_nowords.png'}/>*/}
                 City Block Gallery
                 </Link>
               </li>
+              {// Right to left
+              }
               <li class = "option" >
                     <input onClick = {() => this.props.push('/register')} type = 'button' value = 'Register' class = "button-std" />
               </li>
@@ -38,11 +42,14 @@ class AppHeader extends React.Component {
 
             </ul>
             <hr class = "header-line"/>
+            {// Render flash (funct above)
+            }
             {flashRender(this.props.flash)}
       </div> )
   }
 }
 
+// Access to flash to make flash messages, user to change header links (add profile dropdown)
 function mapStateToProps(state) {
   return {
     user: state.user,
@@ -50,8 +57,11 @@ function mapStateToProps(state) {
   };
 }
 
+// Push action from React-router
 const mapDispatchToProps = dispatch => bindActionCreators(
   {push},
   dispatch,
 )
+
+// Connects component to store
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppHeader))

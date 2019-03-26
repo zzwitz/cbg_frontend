@@ -67,4 +67,5 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
+// Connects component to store 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BrowseBoard))

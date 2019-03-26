@@ -104,4 +104,5 @@ const mapDispatchToProps = (dispatch) => {
     addArtPieceToFavoriteListClick: addArtPieceToFavoriteList
   }, dispatch)};
 
+// Connects component to store 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtModal)

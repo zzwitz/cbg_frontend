@@ -116,6 +116,7 @@ export function fetchArtByTag(n, artTagText) {
     return fetch(api_loc + `browse/getRowsByTag/${artTagTextCap}/${n}`)
       .then(function(response) {
         console.log(response)
+        // Checks to see if response failed
         if (response.status !== 200) {
           console.log('Looks like there was a problem. Status Code: ' +
             response.status);

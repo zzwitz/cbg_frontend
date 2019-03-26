@@ -68,21 +68,23 @@ var nature = {
   link: '/art/tags/nature'
 }
 
-
 var sectionTwo = {
   title :'Browse by Tag',
   catList:[photo, bw, ab, bright, nature]
 }
 
-
+// Creates sidebar objects
 function getSidebar() {
   return([sectionOne, sectionTwo])
 };
 
+// Page component
 class BrowsePage extends React.Component {
   constructor(props) {
   super(props);
 }
+
+ // Once page loads, fetch art from API (this is action creator )
   componentDidMount() {
     this.props.fetchArt(10)
   }
@@ -95,9 +97,13 @@ class BrowsePage extends React.Component {
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-2">
+            {// Sidebar size col 2
+            }
               <BrowseSidebar sectionList = {getSidebar()}/>
             </div>
             <div class="col-md-10">
+            {// Sidebar size col 10
+            }
               <BrowseBoard art = {this.props.art}/>
             </div>
           </div>
@@ -108,22 +114,27 @@ class BrowsePage extends React.Component {
   }
 }
 
-
+//
 function mapStateToProps(state) {
   console.log(state)
   return {
+    // Browsepage art
     art: state.art,
+    // Router for pushing to new page
     router: state.router,
+    // Favorites list for 'Hearting'
     artFavoriteList: state.artFavoriteList
   };
 }
+
+// Adds fetchArt action dispatcher
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     fetchArt: fetchArt
   }, dispatch);
 }
 //
-// export default withRouter(connect()(BrowsePage))
+// Connects component to store 
 export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(BrowsePage)
 
 // export default BrowsePage
